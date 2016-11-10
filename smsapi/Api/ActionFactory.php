@@ -24,8 +24,12 @@ abstract class ActionFactory {
 	 * @param null $proxy
 	 * @param null $client
 	 */
-	public function __construct( $proxy = null, $client = null ) {
-
+	public function __construct( 
+		$proxy = null, 
+		$client = null
+	) {
+		$client = 'SMSApi\Client'::createFromToken(config('sms.token'));
+		
 		if ( $proxy instanceof \SMSApi\Proxy\Proxy ) {
 			$this->setProxy( $proxy );
 		} else {
